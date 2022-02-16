@@ -1,5 +1,4 @@
 const db = require("../db/connection");
-const { convertTimestampToDate } = require("../db/helpers/utils");
 
 exports.selectArticleById = (id) => {
   return db
@@ -9,5 +8,17 @@ exports.selectArticleById = (id) => {
         return Promise.reject({ status: 404, msg: "Article not found" });
       }
       return article[0];
+    });
+};
+
+exports.updateArticleById = (id, updates) => {
+  const { inc_votes } = updates;
+  return db
+    .query(
+      "UPDATE articles SET votes = votes + $2 WHERE article_id = $1 RETURNING *;",
+      [id, inc_votes]
+    )
+    .then(({ rows }) => {
+      return rows[0];
     });
 };
