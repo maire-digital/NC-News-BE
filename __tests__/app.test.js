@@ -144,4 +144,31 @@ describe("app", () => {
         });
     });
   });
+  describe("GET /api/articles", () => {
+    test("Status 200 - responds with an array of article objects", () => {
+      return request(app)
+        .get("/api/articles")
+        .expect(200)
+        .then(({ body: { articles } }) => {
+          expect(articles).toHaveLength(12);
+        });
+    });
+    test("Status 200 - each article object contains expected properties", () => {
+      return request(app)
+        .get("/api/articles")
+        .expect(200)
+        .then(({ body: { articles } }) => {
+          articles.forEach((article) => {
+            expect(article).toEqual({
+              author: expect.any(String),
+              title: expect.any(String),
+              article_id: expect.any(Number),
+              topic: expect.any(String),
+              created_at: expect.any(String),
+              votes: expect.any(Number),
+            });
+          });
+        });
+    });
+  });
 });
