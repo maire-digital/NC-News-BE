@@ -41,4 +41,39 @@ describe("app", () => {
         });
     });
   });
+  describe("GET - /api/articles/:article:id", () => {
+    test("Status 200 - responds with single matching article object", () => {
+      return request(app)
+        .get("/api/articles/2")
+        .expect(200)
+        .then(({ body }) => {
+          expect(body.article).toEqual({
+            author: "icellusedkars",
+            title: "Sony Vaio; or, The Laptop",
+            article_id: 2,
+            body: expect.any(String),
+            topic: "mitch",
+            created_at: expect.any(String),
+            votes: 0,
+          });
+        });
+    });
+    test("Status 404 - responds with error for resource that does not exist", () => {
+      return request(app)
+        .get("/api/articles/999")
+        .expect(404)
+        .then(({ body: { msg } }) => {
+          expect(msg).toBe("Article not found");
+        });
+    });
+
+    test("Status 400 - responds with error when passed bad article_id", () => {
+      return request(app)
+        .get("/api/articles/not-an-article")
+        .expect(400)
+        .then(({ body: { msg } }) => {
+          expect(msg).toBe("Bad request");
+        });
+    });
+  });
 });
