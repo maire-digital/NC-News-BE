@@ -76,4 +76,48 @@ describe("app", () => {
         });
     });
   });
+  describe("PATCH - /api/articles/:article_id", () => {
+    test("Status 200 - responds with updated article", () => {
+      const articleUpdates = {
+        inc_votes: 1,
+      };
+      return request(app)
+        .patch("/api/articles/2")
+        .send(articleUpdates)
+        .expect(200)
+        .then(({ body }) => {
+          expect(body.article).toEqual({
+            author: "icellusedkars",
+            title: "Sony Vaio; or, The Laptop",
+            article_id: 2,
+            body: expect.any(String),
+            topic: "mitch",
+            created_at: expect.any(String),
+            votes: 1,
+          });
+        });
+    });
+    test("Status 400 - responds with error when passed bad request body", () => {
+      const articleUpdates = {
+        inc_votes: "Not valid increment",
+      };
+      return request(app)
+        .patch("/api/articles/2")
+        .send(articleUpdates)
+        .expect(400)
+        .then(({ body: { msg } }) => {
+          expect(msg).toBe("Bad request");
+        });
+    });
+    test("Status 400 - responds with error when passed empty request body", () => {
+      const articleUpdates = {};
+      return request(app)
+        .patch("/api/articles/2")
+        .send(articleUpdates)
+        .expect(400)
+        .then(({ body: { msg } }) => {
+          expect(msg).toBe("Bad request, cannot be null");
+        });
+    });
+  });
 });
