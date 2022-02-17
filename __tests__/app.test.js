@@ -179,4 +179,16 @@ describe("app", () => {
         });
     });
   });
+  describe("GET /api/articles/:article:id (comment count feature", () => {
+    test("Status 200 - responds with article with comment_count property", () => {
+      return request(app)
+        .get("/api/articles/1")
+        .expect(200)
+        .then(({ body }) => {
+          expect(body.article).toEqual(
+            expect.objectContaining({ comment_count: expect.any(Number) })
+          );
+        });
+    });
+  });
 });
