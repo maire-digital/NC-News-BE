@@ -47,15 +47,17 @@ describe("app", () => {
         .get("/api/articles/2")
         .expect(200)
         .then(({ body }) => {
-          expect(body.article).toEqual({
-            author: "icellusedkars",
-            title: "Sony Vaio; or, The Laptop",
-            article_id: 2,
-            body: expect.any(String),
-            topic: "mitch",
-            created_at: expect.any(String),
-            votes: 0,
-          });
+          expect(body.article).toEqual(
+            expect.objectContaining({
+              author: "icellusedkars",
+              title: "Sony Vaio; or, The Laptop",
+              article_id: 2,
+              body: expect.any(String),
+              topic: "mitch",
+              created_at: expect.any(String),
+              votes: 0,
+            })
+          );
         });
     });
     test("Status 404 - responds with error for resource that does not exist", () => {
@@ -141,6 +143,63 @@ describe("app", () => {
               })
             );
           });
+        });
+    });
+  });
+  describe("GET /api/articles", () => {
+    test("Status 200 - responds with an array of article objects", () => {
+      return request(app)
+        .get("/api/articles")
+        .expect(200)
+        .then(({ body: { articles } }) => {
+          expect(articles).toHaveLength(12);
+        });
+    });
+    test("Status 200 - each article object contains expected properties", () => {
+      return request(app)
+        .get("/api/articles")
+        .expect(200)
+        .then(({ body: { articles } }) => {
+          articles.forEach((article) => {
+            expect(article).toEqual({
+              author: expect.any(String),
+              title: expect.any(String),
+              article_id: expect.any(Number),
+              topic: expect.any(String),
+              created_at: expect.any(String),
+              votes: expect.any(Number),
+            });
+          });
+        });
+    });
+    test("Status 200 - articles are sorted by date in descending order", () => {
+      return request(app)
+        .get("/api/articles")
+        .expect(200)
+        .then(({ body: { articles } }) => {
+          expect(articles).toBeSortedBy("created_at", { descending: true });
+        });
+    });
+  });
+  describe("GET /api/articles/:article:id (comment count feature", () => {
+    test("Status 200 - responds with article with comment_count property", () => {
+      return request(app)
+        .get("/api/articles/1")
+        .expect(200)
+        .then(({ body }) => {
+          expect(body.article).toEqual(
+            expect.objectContaining({ comment_count: expect.any(Number) })
+          );
+        });
+    });
+    test("Status 200 - responds with article with comment_count property of 0 when there are no comments", () => {
+      return request(app)
+        .get("/api/articles/2")
+        .expect(200)
+        .then(({ body }) => {
+          expect(body.article).toEqual(
+            expect.objectContaining({ comment_count: 0 })
+          );
         });
     });
   });
