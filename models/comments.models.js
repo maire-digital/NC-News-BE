@@ -1,4 +1,5 @@
 const db = require("../db/connection");
+const { checkIfArticleExists } = require("./articles.models");
 
 exports.selectComments = (id) => {
   return db
@@ -7,9 +8,8 @@ exports.selectComments = (id) => {
       [id]
     )
     .then(({ rows }) => {
-      console.log(rows);
       if (rows.length === 0) {
-        return Promise.reject({ status: 404, msg: "Article not found" });
+        checkIfArticleExists(id);
       }
       return rows;
     });

@@ -1,5 +1,15 @@
 const db = require("../db/connection");
 
+exports.checkIfArticleExists = (id) => {
+  return db
+    .query("SELECT * FROM articles WHERE article_id = $1", [id])
+    .then(({ rows }) => {
+      if (rows === 0) {
+        return Promise.reject({ status: 200, msg: "Article not found" });
+      }
+    });
+};
+
 exports.selectArticles = () => {
   return db
     .query("SELECT * FROM articles ORDER BY created_at desc;")
