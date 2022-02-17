@@ -181,7 +181,7 @@ describe("app", () => {
         });
     });
   });
-  describe("GET /api/articles/:article:id (comment count feature", () => {
+  describe("GET /api/articles/:article:id (comment count feature)", () => {
     test("Status 200 - responds with article with comment_count property", () => {
       return request(app)
         .get("/api/articles/1")
@@ -200,6 +200,32 @@ describe("app", () => {
           expect(body.article).toEqual(
             expect.objectContaining({ comment_count: 0 })
           );
+        });
+    });
+  });
+  describe("GET /api/articles/:article:id/comments ", () => {
+    test("Status 200 - responds with an array of comments for the given article", () => {
+      return request(app)
+        .get("/api/articles/1/comments")
+        .expect(200)
+        .then(({ body: { comments } }) => {
+          expect(comments).toHaveLength(11);
+        });
+    });
+    test("Status 200 - each object contains expected properties", () => {
+      return request(app)
+        .get("/api/articles/1/comments")
+        .expect(200)
+        .then(({ body: { comments } }) => {
+          comments.forEach((comment) => {
+            expect(comment).toEqual({
+              comment_id: expect.any(Number),
+              votes: expect.any(Number),
+              created_at: expect.any(String),
+              author: expect.any(String),
+              body: expect.any(String),
+            });
+          });
         });
     });
   });
