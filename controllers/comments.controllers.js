@@ -1,4 +1,4 @@
-const { selectComments } = require("../models/comments.models");
+const { selectComments, postComment } = require("../models/comments.models");
 
 exports.getArticleCommentsById = (req, res, next) => {
   const id = req.params.article_id;
@@ -10,3 +10,5 @@ exports.getArticleCommentsById = (req, res, next) => {
       next(err);
     });
 };
+
+exports.postComment = (req, res, next) => {};

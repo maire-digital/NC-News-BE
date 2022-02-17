@@ -7,6 +7,14 @@ exports.selectComments = (id) => {
       [id]
     )
     .then(({ rows }) => {
+      console.log(rows);
+      if (rows.length === 0) {
+        return Promise.reject({ status: 404, msg: "Article not found" });
+      }
       return rows;
     });
+};
+
+exports.insertComment = (newComment) => {
+  const { username, body } = newComment;
 };

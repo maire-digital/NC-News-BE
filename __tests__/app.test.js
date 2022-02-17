@@ -203,7 +203,7 @@ describe("app", () => {
         });
     });
   });
-  describe("GET /api/articles/:article:id/comments ", () => {
+  describe.only("GET /api/articles/:article:id/comments ", () => {
     test("Status 200 - responds with an array of comments for the given article", () => {
       return request(app)
         .get("/api/articles/1/comments")
@@ -226,6 +226,30 @@ describe("app", () => {
               body: expect.any(String),
             });
           });
+        });
+    });
+    test("Status 200 - responds with an empty array when no comments for the given article exist", () => {
+      return request(app)
+        .get("/api/articles/2/comments")
+        .expect(200)
+        .then(({ body: { comments } }) => {
+          expect(comments).toEqual([]);
+        });
+    });
+    test("Status 404 - responds with error for article that does not exist", () => {
+      return request(app)
+        .get("/api/articles/999/comments")
+        .expect(404)
+        .then(({ body: { msg } }) => {
+          expect(msg).toBe("Article not found");
+        });
+    });
+    test("Status 400 - responds with error for invalid article_id", () => {
+      return request(app)
+        .get("/api/articles/not-an-id/comments")
+        .expect(400)
+        .then(({ body: { msg } }) => {
+          expect(msg).toBe("Bad request");
         });
     });
   });
