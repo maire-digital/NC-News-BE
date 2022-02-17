@@ -1,4 +1,5 @@
 const db = require("../db/connection");
+const { checkIfArticleExists } = require("./articles.models");
 
 exports.selectComments = (id) => {
   return db
@@ -9,4 +10,8 @@ exports.selectComments = (id) => {
     .then(({ rows }) => {
       return rows;
     });
+};
+
+exports.insertComment = (newComment) => {
+  const { username, body } = newComment;
 };
