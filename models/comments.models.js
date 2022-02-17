@@ -8,9 +8,6 @@ exports.selectComments = (id) => {
       [id]
     )
     .then(({ rows }) => {
-      if (rows.length === 0) {
-        checkIfArticleExists(id);
-      }
       return rows;
     });
 };
