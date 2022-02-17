@@ -236,7 +236,7 @@ describe("app", () => {
           expect(comments).toEqual([]);
         });
     });
-    test("Status 404 - responds with error for article that does not exist", () => {
+    test.only("Status 404 - responds with error for article that does not exist", () => {
       return request(app)
         .get("/api/articles/999/comments")
         .expect(404)
