@@ -4,15 +4,17 @@ exports.checkIfArticleExists = (id) => {
   return db
     .query("SELECT * FROM articles WHERE article_id = $1", [id])
     .then(({ rows }) => {
-      if (rows === 0) {
-        return Promise.reject({ status: 200, msg: "Article not found" });
+      if (rows.length === 0) {
+        return Promise.reject({ status: 404, msg: "Article not found" });
       }
     });
 };
 
 exports.selectArticles = () => {
   return db
-    .query("SELECT * FROM articles ORDER BY created_at desc;")
+    .query(
+      "SELECT author, title, article_id, topic, created_at, votes FROM articles ORDER BY created_at desc;"
+    )
     .then(({ rows: articles }) => {
       return articles;
     });

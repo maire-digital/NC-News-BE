@@ -203,7 +203,7 @@ describe("app", () => {
         });
     });
   });
-  describe.only("GET /api/articles/:article:id/comments ", () => {
+  describe("GET /api/articles/:article:id/comments ", () => {
     test("Status 200 - responds with an array of comments for the given article", () => {
       return request(app)
         .get("/api/articles/1/comments")
