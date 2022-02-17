@@ -4,9 +4,7 @@ const { checkIfArticleExists } = require("../models/articles.models");
 exports.getArticleCommentsById = (req, res, next) => {
   const id = req.params.article_id;
   Promise.all([selectComments(id), checkIfArticleExists(id)])
-
     .then(([comments]) => {
-      console.log(comments);
       res.status(200).send({ comments });
     })
     .catch((err) => {
