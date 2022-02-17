@@ -253,4 +253,45 @@ describe("app", () => {
         });
     });
   });
+  describe("POST /api/articles/:article_id/comments", () => {
+    test("Status 201 - responds with posted comment", () => {
+      const newComment = {
+        username: "lurker",
+        body: "This is a test comment.",
+      };
+      return request(app)
+        .post("/api/articles/2/comments")
+        .send(newComment)
+        .expect(201)
+        .then(({ body }) => {
+          expect(body.comment).toEqual(
+            expect.objectContaining({
+              author: "lurker",
+              body: "This is a test comment.",
+              votes: expect.any(Number),
+              created_at: expect.any(String),
+              article_id: 2,
+              comment_id: expect.any(Number),
+            })
+          );
+        });
+    });
+    test("Status 400 - responds with error for article that does not exist", () => {
+      const newComment = {
+        username: "lurker",
+        body: "This is a test comment.",
+      };
+      return request(app)
+        .post("/api/articles/999/comments")
+        .send(newComment)
+        .expect(400)
+        .then(({ body: { msg } }) => {
+          expect(msg).toBe("Bad request, article does not exist");
+        });
+    });
+
+    // test("Status 400 - responds with error when passed bad request body", () => {});
+    // test("Status 400 - responds with error when passed empty request body", () => {});
+    // test("Status 404 - responds with error for invalid article_id", () => {});
+  });
 });
