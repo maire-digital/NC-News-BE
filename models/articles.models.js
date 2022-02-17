@@ -2,7 +2,9 @@ const db = require("../db/connection");
 
 exports.selectArticles = () => {
   return db
-    .query("SELECT * FROM articles ORDER BY created_at desc;")
+    .query(
+      "SELECT author, title, article_id, topic, created_at, votes FROM articles ORDER BY created_at desc;"
+    )
     .then(({ rows: articles }) => {
       return articles;
     });
