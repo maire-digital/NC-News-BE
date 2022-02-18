@@ -14,6 +14,7 @@ const { getUsers } = require("./controllers/users.controllers");
 const {
   getArticleCommentsById,
   postComment,
+  removeCommentById,
 } = require("./controllers/comments.controllers");
 
 const app = express();
@@ -28,6 +29,8 @@ app.patch("/api/articles/:article_id", patchArticleById);
 app.post("/api/articles/:article_id/comments", postComment);
 
 app.get("/api/users", getUsers);
+
+app.delete("/api/comments/:comment_id", removeCommentById);
 
 app.all("/*", (req, res) => {
   res.status(404).send({ msg: "Path not found" });
