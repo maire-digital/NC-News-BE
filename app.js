@@ -1,4 +1,5 @@
 const express = require("express");
+const { getEndpointsJson } = require("./controllers/endpoints.controllers");
 const { getTopics } = require("./controllers/topics.controllers");
 const {
   handleCustoms,
@@ -19,6 +20,8 @@ const {
 
 const app = express();
 app.use(express.json());
+
+app.get("/api", getEndpointsJson);
 
 app.get("/api/topics", getTopics);
 
