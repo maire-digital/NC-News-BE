@@ -1,4 +1,5 @@
 
-\c nc_news_test
+\c nc_news_test      
 
-SELECT * FROM comments WHERE article_id = 1
+"INSERT INTO comments (article_id, author, body) VALUES ($1, $2, $3)RETURNING *;",
+      [id, username, body]
