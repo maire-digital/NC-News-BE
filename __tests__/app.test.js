@@ -276,7 +276,7 @@ describe("app", () => {
           );
         });
     });
-    test("Status 400 - responds with error for article that does not exist", () => {
+    test("Status 404 - responds with error for article that does not exist", () => {
       const newComment = {
         username: "lurker",
         body: "This is a test comment.",
@@ -284,14 +284,36 @@ describe("app", () => {
       return request(app)
         .post("/api/articles/999/comments")
         .send(newComment)
-        .expect(400)
+        .expect(404)
         .then(({ body: { msg } }) => {
-          expect(msg).toBe("Bad request, article does not exist");
+          expect(msg).toBe("Article not found");
         });
     });
-
-    // test("Status 400 - responds with error when passed bad request body", () => {});
-    // test("Status 400 - responds with error when passed empty request body", () => {});
-    // test("Status 404 - responds with error for invalid article_id", () => {});
+    test("Status 400 - responds with error when passed bad request (path)", () => {
+      const newComment = {
+        username: "lurker",
+        body: "This is a test comment.",
+      };
+      return request(app)
+        .post("/api/articles/not-an-id/comments")
+        .send(newComment)
+        .expect(400)
+        .then(({ body: { msg } }) => {
+          expect(msg).toBe("Bad request");
+        });
+    });
+    test("Status 400 - responds with error when passed bad request body", () => {
+      const newComment = {
+        username: 123,
+        body: 123,
+      };
+      return request(app)
+        .post("/api/articles/2/comments")
+        .send(newComment)
+        .expect(400)
+        .then(({ body: { msg } }) => {
+          expect(msg).toBe("Bad request");
+        });
+    });
   });
 });
