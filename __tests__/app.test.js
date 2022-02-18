@@ -386,5 +386,13 @@ describe("app", () => {
     test("Status 204 - responds with an empty response body", () => {
       return request(app).delete("/api/comments/1").expect(204);
     });
+    test("Status 400 - responds with error for comment that does not exist", () => {
+      return request(app)
+        .delete("/api/comments/999")
+        .expect(400)
+        .then(({ body: { msg } }) => {
+          expect(msg).toBe("Bad request");
+        });
+    });
   });
 });
