@@ -316,4 +316,70 @@ describe("app", () => {
         });
     });
   });
+  describe("GET /api/articles (queries)", () => {
+    describe("sort_by query", () => {
+      test("Status 200 - accepts sort_by query, defaults to date", () => {
+        return request(app)
+          .get("/api/articles?sort_by=created_at")
+          .expect(200)
+          .then(({ body: { articles } }) => {
+            expect(articles).toHaveLength(12);
+            expect(articles).toBeSortedBy("created_at", { descending: true });
+          });
+      });
+      test("Status 400 - invalid sort_by query", () => {
+        return request(app)
+          .get("/api/articles?sort_by=invalid")
+          .expect(400)
+          .then(({ body: { msg } }) => {
+            expect(msg).toBe("Bad request");
+          });
+      });
+    });
+    describe("order query", () => {
+      test("Status 200 - accepts order query, defaults to descending", () => {
+        return request(app)
+          .get("/api/articles?order=desc")
+          .expect(200)
+          .then(({ body: { articles } }) => {
+            expect(articles).toHaveLength(12);
+            expect(articles).toBeSortedBy("created_at", { descending: true });
+          });
+      });
+      test("Status 400 - invalid order query", () => {
+        return request(app)
+          .get("/api/articles?order=invalid")
+          .expect(400)
+          .then(({ body: { msg } }) => {
+            expect(msg).toBe("Bad request");
+          });
+      });
+    });
+    describe("topic query", () => {
+      test("Status 200 - accepts topic query, filters article by topic value", () => {
+        return request(app)
+          .get("/api/articles?topic=cats")
+          .expect(200)
+          .then(({ body: { articles } }) => {
+            expect(articles).toHaveLength(1);
+          });
+      });
+      test("Status 400 - invalid topic query", () => {
+        return request(app)
+          .get("/api/articles?topic=invalid")
+          .expect(400)
+          .then(({ body: { msg } }) => {
+            expect(msg).toBe("Bad request");
+          });
+      });
+      test("Status 404 - no articles exist for topic", () => {
+        return request(app)
+          .get("/api/articles?topic=paper")
+          .expect(404)
+          .then(({ body: { msg } }) => {
+            expect(msg).toBe("Articles not found");
+          });
+      });
+    });
+  });
 });
