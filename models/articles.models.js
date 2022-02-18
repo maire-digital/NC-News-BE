@@ -46,7 +46,7 @@ exports.selectArticles = (sort_by = "created_at", order = "desc", topic) => {
 
   return db.query(inputQuery, queryValues).then(({ rows: articles }) => {
     if (articles.length === 0) {
-      return Promise.reject({ status: 404, msg: "Articles not found" });
+      return Promise.reject({ status: 200, msg: "Articles not found" });
     }
     return articles;
   });

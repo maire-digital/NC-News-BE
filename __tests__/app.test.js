@@ -339,11 +339,11 @@ describe("app", () => {
     describe("order query", () => {
       test("Status 200 - accepts order query, defaults to descending", () => {
         return request(app)
-          .get("/api/articles?order=desc")
+          .get("/api/articles?order=asc")
           .expect(200)
           .then(({ body: { articles } }) => {
             expect(articles).toHaveLength(12);
-            expect(articles).toBeSortedBy("created_at", { descending: true });
+            expect(articles).toBeSortedBy("created_at");
           });
       });
       test("Status 400 - invalid order query", () => {
@@ -372,14 +372,19 @@ describe("app", () => {
             expect(msg).toBe("Bad request");
           });
       });
-      test("Status 404 - no articles exist for topic", () => {
+      test("Status 200 - no articles exist for topic", () => {
         return request(app)
           .get("/api/articles?topic=paper")
-          .expect(404)
+          .expect(200)
           .then(({ body: { msg } }) => {
             expect(msg).toBe("Articles not found");
           });
       });
+    });
+  });
+  describe("DELETE /api/comments/:comment_id", () => {
+    test("Status 204 - responds with an empty response body", () => {
+      return request(app).delete("/api/comments/1").expect(204);
     });
   });
 });
