@@ -10,14 +10,46 @@ exports.checkIfArticleExists = (id) => {
     });
 };
 
-exports.selectArticles = () => {
-  return db
-    .query(
-      "SELECT author, title, article_id, topic, created_at, votes FROM articles ORDER BY created_at desc;"
-    )
-    .then(({ rows: articles }) => {
-      return articles;
-    });
+exports.selectArticles = (sort_by = "created_at", order = "desc", topic) => {
+  const acceptToSortBy = [
+    "author",
+    "title",
+    "article_id",
+    "topic",
+    "created_at",
+    "votes",
+  ];
+  const acceptToOrder = ["asc", "desc"];
+  const acceptAsTopic = ["mitch", "cats", "paper"];
+
+  if (!acceptToSortBy.includes(sort_by)) {
+    return Promise.reject({ status: 400, msg: "Bad request" });
+  }
+
+  if (!acceptToOrder.includes(order)) {
+    return Promise.reject({ status: 400, msg: "Bad request" });
+  }
+
+  if (topic && !acceptAsTopic.includes(topic)) {
+    return Promise.reject({ status: 400, msg: "Bad request" });
+  }
+
+  let inputQuery = `SELECT author, title, article_id, topic, created_at, votes FROM articles `;
+
+  const queryValues = [];
+  if (topic) {
+    queryValues.push(topic);
+    inputQuery += `WHERE topic = $1 `;
+  }
+
+  inputQuery += `ORDER BY ${sort_by} ${order};`;
+
+  return db.query(inputQuery, queryValues).then(({ rows: articles }) => {
+    if (articles.length === 0) {
+      return Promise.reject({ status: 200, msg: "Articles not found" });
+    }
+    return articles;
+  });
 };
 
 exports.selectArticleById = (id) => {
