@@ -2,65 +2,54 @@
 
 ## 📰 *Welcome to Northcoders News backend!* 
 
-👩🏽‍💻 Hi! I'm Máire, and this repository is part of a portfolio piece created over five days during my time at *[Northcoders](https://northcoders.com/company/about-us)* full-stack Javascript development boot-camp 
+<br> 👩🏽‍💻 Hi! I'm Máire, and this repository is part of a portfolio piece created over five days during my time at *[Northcoders](https://northcoders.com/company/about-us)* full-stack Javascript development boot-camp 
 
 👋🏽 Find me here on *[GitHub](https://github.com/maire-digital "let's connect!")*, or on *[LinkedIn](https://www.linkedin.com/in/maire-dev/ "let's connect!")* 
 
-## Project Background
+## <br> Project Background
 
 This API was created as the backend service for a full-stack social news application, drawing inspiration from Reddit. The purpose of the API is to access application data programmatically and provide the information (users, articles, comments, and topic categories) to the frontend architecture. It is built using `RESTful` principles, `Javascript`, `Express.js`, `PostgreSQL` and `node-postgres`.
 
-## Hosted App
+## <br> Hosted App
 
 Please access the hosted version of this API at: [insert hosted site]
 
-## Frontend Repo
+## <br> Frontend Repo <br>
 
 The frontend repository can be found here:
 The hosted frontend project can be found here:
 
-## Endpoints
+## <br> Endpoints <br>
 
 ### *The API has the following endpoints available* 
 
 `GET /api/ ` 
-
->returns a list of all of the available endpoints
+* returns a list of all of the available endpoints
 
 `GET /api/topics`
-
->returns a list of topics (categories)
+* returns a list of topics (categories)
 
 `GET  /api/users`
-
->returns a list of all current users
+* returns a list of all current users
 
 `GET /api/articles`
-
->returns a list of all articles
->*accepts queries*
->* `filter by` topic 
->* `sort by` any valid column
->* specify `ascending` or `descending` order of response 
+* returns a list of all articles and *accepts queries*
+* > `filter by` topic <br> `sort by` any valid column <br> specify `ascending` or `descending` order of response 
 
 `GET /api/articles/:article_id`
-
->returns a specific article, including associated comments
+* returns a specific article, including associated comments
 
 `PATCH /api/articles/:article_id`
-
->patches a specific article in order to add or remove a vote
+* patches a specific article in order to add or remove a vote
 
 `POST /api/articles/:article_id/comments`
-
->posts a new comment to a specific article
+* posts a new comment to a specific article
 
 `DELETE /api/articles/comments/:comment_id`
+* deletes a specific comment
 
->deletes a specific comment
 
-
-## Minimum Requirements
+## <br> Minimum Requirements  <br>
 
 ### To run the App locally:
 * `Node` v17.3.0
@@ -77,28 +66,28 @@ The hosted frontend project can be found here:
 
 *Earlier versions have not been tested and may not work.*
 
-## Setup and running this repo locally
+## <br> Setup and running this repo locally
 
 ### CLI
 Clone this repository locally
 
->`git clone`
+* `git clone`
 
 Install dependencies with NPM 
 
->`npm i`
+* `npm i`
 
 Install dev dependencies
 
->`npm i` -D jest
+* `npm i` -D jest
 
->`npm i` -D supertest
+* `npm i` -D supertest
 
->`npm i`--save-dev jest-sorted
+* `npm i`--save-dev jest-sorted
 
->`npm i`--dave-dev jest-extended
+* `npm i`--dave-dev jest-extended
 
-### Environment
+### <br> Environment
 
 #### Create two .env files in the root directory of the project to connect to the relevant database:
 
@@ -110,31 +99,31 @@ Install dev dependencies
 
 >PGDATABASE=nc_news
 
-### CLI
+### <br> CLI
 Create the database
->`npm run` setup-dbs
+* `npm run` setup-dbs
 
 Seed the database
->`npm run` seed
+* `npm run` seed
 
-### Testing
+### <br> Testing
 
 Run all tests
 
->`npm t `
+* `npm t `
 
 Ignore utils tests
 
->`npm t` app.test.js
+* `npm t` app.test.js
 
 ### Running the server locally
 
->`npm start`
+* `npm start`
 
-Once the app is running, it will open a local port (9090). Make requests to the server using an application like `Insomnia` and the available endpoints.
+Once the app is running, it will open a local port (9090). Make requests to the server using an application like `Insomnia` and the available endpoints. <br>
 
-### 🗂 ***Thank you for looking through this repository! Check out the frontend (add link) to see the whole application in action.***
+### <br>🗂 ***Thank you for looking through this repository! Check out the frontend (add link) to see the whole application in action.***
 
-👩🏽‍💻 **I'm always happy to connect with new people and opportunities!** 
+<br>👩🏽‍💻 **I'm always happy to connect with new people and opportunities!** 
 
 👋🏽 Find me here on *[GitHub](https://github.com/maire-digital "let's connect!")*, or on *[LinkedIn](https://www.linkedin.com/in/maire-dev/ "let's connect!")* 
