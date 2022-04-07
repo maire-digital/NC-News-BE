@@ -1,6 +1,6 @@
 # Northcoders News API
 
-## Northcoders News API 📰 💻
+## Welcome to Northcoders News backend! 📰 💻
 
 ### Hosted App
 
@@ -19,25 +19,25 @@ The hosted frontend project can be found here:
 
 The API has the following endpoints avaiable: 
 
-* GET /api/ 
+GET /api/ 
 >returns a list of all of the available endpoints
-* GET /api/topics
+GET /api/topics
 >returns a list of topics (categories)
-* GET  /api/users
+GET  /api/users
 >returns a list of all current users
-* GET /api/articles
+GET /api/articles
 >returns a list of all articles
 >>accepts queries
 >>* filter by topic 
 >>* sort by any valid column
 >>* specify ascending or descending order of response 
-* GET /api/articles/:article_id
+GET /api/articles/:article_id
 >returns a specific article, including associated comments
-* PATCH /api/articles/:article_id
+PATCH /api/articles/:article_id
 >patches a specific article in order to add or remove a vote
-* POST /api/articles/:article_id/comments
+POST /api/articles/:article_id/comments
 >posts a new comment to a specific article
-* DELETE /api/articles/comments/:comment_id
+DELETE /api/articles/comments/:comment_id
 >deletes a specific comment
 
 
@@ -61,39 +61,40 @@ To run test suite:
 ### Setup
 
 CLI:
-* Clone this repository locally
+Clone this repository locally
 >git clone
-* Install dependencies with NPM 
+Install dependencies with NPM 
 >npm i
-* Install dev dependencies
+Install dev dependencies
 >npm i -D jest
 >npm i -D supertest
 >npm i--save-dev jest-sorted
 >npm i--dave-dev jest-extended
 
 Create two .env files in the root directory of the project to connect to the relevant database:
-* .env.test should contain
+.env.test should contain
 >PGDATABASE=nc_news_test
-* .env.development should contain
+.env.development should contain
 >PGDATABASE=nc_news
 
 CLI:
-* Create the database
+Create the database
 >npm run setup-dbs
-* Seed the database
+Seed the database
 >npm run seed
 
 Testing:
-* Run all tests
+Run all tests
 >npm t 
-* Ignore utils tests
+Ignore utils tests
 >npm app.test.js
 
 Running the server locally:
 >npm start
 
-Once the app is running, it will open a local port (9090). Make requests to the server using an application like Insomnia and the available enpoints.
+Once the app is running, it will open a local port (9090). Make requests to the server using an application like Insomnia and the available endpoints.
 
-*** Thank you for looking through this repository! Check out the frontend to see the whole application in action. ***
+***Thank you for looking through this repository! Check out the frontend to see the whole application in action.***
 
-I'm always happy to connect with new people and oportunities! 👋🏽 👩🏽‍💻 Find me here on *[GitHub](https://github.com/maire-digital "let's connect!")*, or on *[LinkedIn](https://www.linkedin.com/in/maire-dev/ "let's connect!")* 
+👩🏽‍💻 ***I'm always happy to connect with new people and opportunities!*** 
+👋🏽 Find me here on *[GitHub](https://github.com/maire-digital "let's connect!")*, or on *[LinkedIn](https://www.linkedin.com/in/maire-dev/ "let's connect!")* 
