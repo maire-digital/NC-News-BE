@@ -10,14 +10,7 @@
 
 This API was created as the backend service for a full-stack social news application, drawing inspiration from Reddit. The purpose of the API is to access application data programmatically and provide the information (users, articles, comments, and topic categories) to the frontend architecture. It is built using `RESTful` principles, `Javascript`, `Express.js`, `PostgreSQL` and `node-postgres`.
 
-## <br> Hosted App
-
-Please access the hosted version of this API at: [insert hosted site]
-
-## <br> Frontend Repo <br>
-
-The frontend repository can be found here:
-The hosted frontend project can be found here:
+*You can access a hosted version of this API on [Heroku](https://nc-news-maire.herokuapp.com/api/). Use the paths below to request data and explore the server.*
 
 ## <br> Endpoints <br>
 
