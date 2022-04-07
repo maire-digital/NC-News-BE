@@ -84,13 +84,13 @@ Install dev dependencies
 
 #### Create two .env files in the root directory of the project to connect to the relevant database:
 
-`.env.test` should contain this code:
+`.env.test` should specify a connection to the test database:
 
->PGDATABASE=nc_news_test
+>PGDATABASE=[insert test db name here]
 
-`.env.development` should contain this code:
+`.env.development` should  specify a connection to the development database:
 
->PGDATABASE=nc_news
+>PGDATABASE=[insert dev db name here]
 
 ### <br> CLI
 Create the database
