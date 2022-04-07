@@ -1,6 +1,6 @@
 # Northcoders News API
 
-## Welcome to Northcoders News backend! 📰 💻
+## *Welcome to Northcoders News backend!* 📰 💻
 
 ## Hosted App
 
@@ -17,7 +17,7 @@ The hosted frontend project can be found here:
 
 ## Endpoints
 
-### The API has the following endpoints available: 
+### *The API has the following endpoints available* 
 
 GET /api/  
 
@@ -34,10 +34,10 @@ GET  /api/users
 GET /api/articles
 
 >returns a list of all articles
->>accepts queries
->>* filter by topic 
->>* sort by any valid column
->>* specify ascending or descending order of response 
+>*accepts queries*
+>* filter by topic 
+>* sort by any valid column
+>* specify ascending or descending order of response 
 
 GET /api/articles/:article_id
 
@@ -75,7 +75,7 @@ DELETE /api/articles/comments/:comment_id
 
 ## Setup
 
-### CLI:
+### CLI
 Clone this repository locally
 
 >git clone
@@ -103,13 +103,13 @@ Install dev dependencies
 
 >PGDATABASE=nc_news
 
-### CLI:
+### CLI
 Create the database
 >npm run setup-dbs
 Seed the database
 >npm run seed
 
-### Testing:
+### Testing
 
 Run all tests
 
@@ -119,13 +119,14 @@ Ignore utils tests
 
 >npm app.test.js
 
-### Running the server locally:
+### Running the server locally
 
 >npm start
 
 Once the app is running, it will open a local port (9090). Make requests to the server using an application like Insomnia and the available endpoints.
 
-***Thank you for looking through this repository! Check out the frontend to see the whole application in action.***
+### Thank you for looking through this repository! Check out the frontend (*add link) to see the whole application in action.
 
 👩🏽‍💻 ***I'm always happy to connect with new people and opportunities!*** 
+
 👋🏽 Find me here on *[GitHub](https://github.com/maire-digital "let's connect!")*, or on *[LinkedIn](https://www.linkedin.com/in/maire-dev/ "let's connect!")* 
