@@ -91,11 +91,11 @@ Install dev dependencies
 
 #### Create two .env files in the root directory of the project to connect to the relevant database:
 
-`.env.test` should contain
+`.env.test` should contain this code:
 
 >PGDATABASE=nc_news_test
 
-`.env.development` should contain
+`.env.development` should contain this code:
 
 >PGDATABASE=nc_news
 
