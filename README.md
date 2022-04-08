@@ -62,23 +62,23 @@ This API was created as the backend service for a full-stack social news applica
 ## <br> Setup and running this repo locally
 
 ### CLI
-Clone this repository locally
+Clone this repository locally:
+```bash
+git clone
+```
 
-* `git clone`
+Install dependencies with NPM: 
+```bash
+npm i
+```
 
-Install dependencies with NPM 
-
-* `npm i`
-
-Install dev dependencies
-
-* `npm i` -D jest
-
-* `npm i` -D supertest
-
-* `npm i`--save-dev jest-sorted
-
-* `npm i`--dave-dev jest-extended
+Install dev dependencies:
+```bash
+npm i -D jest
+npm i -D supertest
+npm i--save-dev jest-sorted
+npm i--dave-dev jest-extended
+```
 
 ### <br> Environment
 
@@ -93,25 +93,32 @@ Install dev dependencies
 >PGDATABASE=[insert dev db name here]
 
 ### <br> CLI
-Create the database
-* `npm run` setup-dbs
+Create the database:
+```bash
+npm run setup-dbs
+```
 
-Seed the database
-* `npm run` seed
+Seed the database:
+```bash
+npm run seed
+```
 
 ### <br> Testing
 
-Run all tests
+Run all tests:
+```bash
+npm t
+```
 
-* `npm t `
+Ignore utils tests:
+```bash
+npm t app.test.js
+```
 
-Ignore utils tests
-
-* `npm t` app.test.js
-
-### Running the server locally
-
-* `npm start`
+### <br> Running the server locally
+```bash
+npm start
+```
 
 Once the app is running, it will open a local port (9090). Make requests to the server using an application like `Insomnia` and the available endpoints. <br>
 
