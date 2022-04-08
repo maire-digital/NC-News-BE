@@ -34,7 +34,7 @@ exports.selectArticles = (sort_by = "created_at", order = "desc", topic) => {
     return Promise.reject({ status: 400, msg: "Bad request" });
   }
 
-  let inputQuery = `SELECT author, title, article_id, topic, created_at, votes FROM articles `;
+  let inputQuery = `SELECT author, title, article_id, topic, body, created_at, votes FROM articles `;
 
   const queryValues = [];
   if (topic) {
