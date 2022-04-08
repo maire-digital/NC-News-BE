@@ -16,7 +16,7 @@ exports.selectArticles = (sort_by = "created_at", order = "desc", topic) => {
     "title",
     "article_id",
     "topic",
-    "created_at",
+    "created_at", 
     "votes",
   ];
   const acceptToOrder = ["asc", "desc"];
