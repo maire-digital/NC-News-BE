@@ -20,7 +20,7 @@ exports.selectArticles = (sort_by = "created_at", order = "desc", topic) => {
     "votes",
   ];
   const acceptToOrder = ["asc", "desc"];
-  const acceptAsTopic = ["mitch", "cats", "paper"];
+  const acceptAsTopic = ["cooking", "coding", "football", "cats", "paper"];
 
   if (!acceptToSortBy.includes(sort_by)) {
     return Promise.reject({ status: 400, msg: "Bad request" });
