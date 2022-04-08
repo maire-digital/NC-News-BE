@@ -166,6 +166,7 @@ describe("app", () => {
               title: expect.any(String),
               article_id: expect.any(Number),
               topic: expect.any(String),
+              body: expect.any(String),
               created_at: expect.any(String),
               votes: expect.any(Number),
             });
