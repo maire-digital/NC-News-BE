@@ -17,6 +17,7 @@ exports.selectArticles = (sort_by = "created_at", order = "desc", topic) => {
     "article_id",
     "topic",
     "created_at", 
+    "comment_count",
     "votes",
   ];
   const acceptToOrder = ["asc", "desc"];
@@ -34,7 +35,7 @@ exports.selectArticles = (sort_by = "created_at", order = "desc", topic) => {
     return Promise.reject({ status: 400, msg: "Bad request" });
   }
 
-  let inputQuery = `SELECT author, title, article_id, topic, body, created_at, votes FROM articles `;
+  let inputQuery = `SELECT articles.*, COUNT(comments.votes)::int AS comment_count FROM articles LEFT JOIN comments ON articles.article_id = comments.article_id `;
 
   const queryValues = [];
   if (topic) {
@@ -42,7 +43,7 @@ exports.selectArticles = (sort_by = "created_at", order = "desc", topic) => {
     inputQuery += `WHERE topic = $1 `;
   }
 
-  inputQuery += `ORDER BY ${sort_by} ${order};`;
+  inputQuery += `GROUP BY articles.article_id ORDER BY ${sort_by} ${order};`;
 
   return db.query(inputQuery, queryValues).then(({ rows: articles }) => {
     if (articles.length === 0) {
