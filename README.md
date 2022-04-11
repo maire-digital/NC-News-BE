@@ -123,7 +123,7 @@ npm start
 Once the app is running, it will open a local port (9090). Make requests to the server using an application like `Insomnia` and the available endpoints. <br>
 
 ## <br>🗂 ***Thank you for looking through this repository!*** 
-### 🖥 ***Check out the frontend (add link) to see the whole application in action.***
+### 🖥 ***Check out the frontend on [GitHub](https://github.com/maire-digital/NC-News-FE) and [Netlify](https://maire-nc-news.netlify.app/) to see the whole application in action.***
 
 <br>👩🏽‍💻 **I'm always happy to connect with new people and opportunities!** 
 
