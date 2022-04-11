@@ -64,7 +64,7 @@ This API was created as the backend service for a full-stack social news applica
 ### CLI
 Clone this repository locally:
 ```bash
-git clone
+git clone https://github.com/maire-digital/NC-News-BE
 ```
 
 Install dependencies with NPM: 
